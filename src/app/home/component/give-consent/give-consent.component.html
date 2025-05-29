@@ -1,12 +1,13 @@
-<div class="w-100 h-100">
+<div class="w-100 container">
     <form class="d-flex flex-column align-items-center gap-3" [formGroup]="form" (ngSubmit)="submit()">
-        <div class="d-flex flex-row justify-content-center gap-5">
+        <div class="d-flex flex-row justify-content-between">
             <div class="col-4 form-floating mb-3">
                 <input type="name" class="form-control" id="nameInput" placeholder="name" formControlName="name">
                 <label for="floatingInput">{{'name' | translate }}</label>
             </div>
             <div class="col-6 form-floating">
-                <input type="email" class="form-control" id="emailInput" placeholder="name@example.com" formControlName="email">
+                <input type="email" class="form-control" id="emailInput" placeholder="name@example.com"
+                    formControlName="email">
                 <label for="floatingInput">{{'email-address' | translate }}</label>
             </div>
         </div>

@@ -1,1 +1,45 @@
-<p>collected-consents works!</p>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th *ngFor="let column of columns">{{'collected.' + column | translate }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (consent of paginatedData; track consent.id) {
+        <tr>
+            <td>{{ consent.id }}</td>
+            <td>{{ consent.name }}</td>
+            <td>{{ consent.email }}</td>
+            <td>
+                @if(consent.consents.newsletter == true){
+                {{ 'consents.newsletter' | translate }}
+                }
+                @if(consent.consents.ads){
+                {{ 'consents.ads' | translate }} ,
+                }
+                @if(consent.consents.anonymous){
+                {{ 'consents.anonymous' | translate }}
+                }
+            </td>
+        </tr>
+        } @empty {
+        <tr>
+            <td colspan="4" style="text-align: center"></td>
+        </tr>
+        }
+    </tbody>
+</table>
+<div class="row">
+    <div class="col-12">
+        <pagination [totalItems]="consents.length" [(ngModel)]="pagination.currentPage"
+            [customPreviousTemplate]="prevTemplate" [customNextTemplate]="nextTemplate"
+            [itemsPerPage]="pagination.itemsPerPage" (pageChanged)="onPageChange($event)"></pagination>
+
+        <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+            <i class="bi bi-arrow-right-circle-fill"></i>
+        </ng-template>
+        <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+            <i class="bi bi-arrow-left-circle-fill"></i>
+        </ng-template>
+    </div>
+</div>

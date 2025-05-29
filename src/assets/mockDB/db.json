@@ -1,0 +1,304 @@
+{
+  "consents": [
+    {
+      "id": 1,
+      "name": "Jose da Silva",
+      "email": "silva.jose@local.com",
+      "consents": {
+        "newsletter": true,
+        "ads": true,
+        "anonymous": true
+      }
+    },
+    {
+      "id": 2,
+      "name": "Joao da Silva",
+      "email": "joao_silva@local.com",
+      "consents": {
+        "newsletter": true,
+        "ads": true,
+        "anonymous": false
+      }
+    },
+    {
+      "id": 3,
+      "name": "Maria Oliveira",
+      "email": "maria.oliveira@local.com",
+      "consents": {
+        "newsletter": false,
+        "ads": true,
+        "anonymous": true
+      }
+    },
+    {
+      "id": 4,
+      "name": "Carlos Mendes",
+      "email": "carlos.mendes@local.com",
+      "consents": {
+        "newsletter": true,
+        "ads": false,
+        "anonymous": false
+      }
+    },
+    {
+      "id": 5,
+      "name": "Ana Pereira",
+      "email": "ana.pereira@local.com",
+      "consents": {
+        "newsletter": false,
+        "ads": false,
+        "anonymous": true
+      }
+    },
+    {
+      "id": 6,
+      "name": "Pedro Santos",
+      "email": "pedro.santos@local.com",
+      "consents": {
+        "newsletter": true,
+        "ads": true,
+        "anonymous": false
+      }
+    },
+    {
+      "id": 7,
+      "name": "Fernanda Costa",
+      "email": "fernanda.costa@local.com",
+      "consents": {
+        "newsletter": false,
+        "ads": true,
+        "anonymous": false
+      }
+    },
+    {
+      "id": 8,
+      "name": "Pedro Ramos",
+      "email": "pedro.ramos@local.com",
+      "consents": {
+        "newsletter": true,
+        "ads": true,
+        "anonymous": true
+      }
+    },
+    {
+      "id": 9,
+      "name": "Camila Almeida",
+      "email": "camila.almeida@local.com",
+      "consents": {
+        "newsletter": false,
+        "ads": false,
+        "anonymous": false
+      }
+    },
+    {
+      "id": 10,
+      "name": "Lucas Martins",
+      "email": "lucas.martins@local.com",
+      "consents": {
+        "newsletter": true,
+        "ads": false,
+        "anonymous": true
+      }
+    },
+    {
+      "id": 11,
+      "name": "Juliana Ferreira",
+      "email": "juliana.ferreira@local.com",
+      "consents": {
+        "newsletter": false,
+        "ads": true,
+        "anonymous": false
+      }
+    },
+    {
+      "id": 12,
+      "name": "Ricardo Mendes",
+      "email": "ricardo.mendes@local.com",
+      "consents": {
+        "newsletter": true,
+        "ads": false,
+        "anonymous": false
+      }
+    },
+    {
+      "id": 13,
+      "name": "Amanda Souza",
+      "email": "amanda.souza@local.com",
+      "consents": {
+        "newsletter": false,
+        "ads": true,
+        "anonymous": true
+      }
+    },
+    {
+      "id": 14,
+      "name": "Thiago Batista",
+      "email": "thiago.batista@local.com",
+      "consents": {
+        "newsletter": true,
+        "ads": true,
+        "anonymous": false
+      }
+    },
+    {
+      "id": 15,
+      "name": "Larissa Campos",
+      "email": "larissa.campos@local.com",
+      "consents": {
+        "newsletter": false,
+        "ads": false,
+        "anonymous": true
+      }
+    },
+    {
+      "id": 16,
+      "name": "Matheus Azevedo",
+      "email": "matheus.azevedo@local.com",
+      "consents": {
+        "newsletter": true,
+        "ads": false,
+        "anonymous": false
+      }
+    },
+    {
+      "id": 17,
+      "name": "Beatriz Lima",
+      "email": "beatriz.lima@local.com",
+      "consents": {
+        "newsletter": false,
+        "ads": true,
+        "anonymous": true
+      }
+    },
+    {
+      "id": 18,
+      "name": "Gustavo Cardoso",
+      "email": "gustavo.cardoso@local.com",
+      "consents": {
+        "newsletter": true,
+        "ads": true,
+        "anonymous": false
+      }
+    },
+    {
+      "id": 19,
+      "name": "Patrícia Ribeiro",
+      "email": "patricia.ribeiro@local.com",
+      "consents": {
+        "newsletter": false,
+        "ads": false,
+        "anonymous": true
+      }
+    },
+    {
+      "id": 20,
+      "name": "Eduardo Teixeira",
+      "email": "eduardo.teixeira@local.com",
+      "consents": {
+        "newsletter": true,
+        "ads": false,
+        "anonymous": false
+      }
+    },
+    {
+      "id": 21,
+      "name": "Vanessa Moura",
+      "email": "vanessa.moura@local.com",
+      "consents": {
+        "newsletter": false,
+        "ads": true,
+        "anonymous": true
+      }
+    },
+    {
+      "id": 22,
+      "name": "André Castro",
+      "email": "andre.castro@local.com",
+      "consents": {
+        "newsletter": true,
+        "ads": true,
+        "anonymous": false
+      }
+    },
+    {
+      "id": 23,
+      "name": "Natália Barbosa",
+      "email": "natalia.barbosa@local.com",
+      "consents": {
+        "newsletter": false,
+        "ads": false,
+        "anonymous": true
+      }
+    },
+    {
+      "id": 24,
+      "name": "Fernando Moura",
+      "email": "fernando.moura@local.com",
+      "consents": {
+        "newsletter": true,
+        "ads": false,
+        "anonymous": true
+      }
+    },
+    {
+      "id": 25,
+      "name": "Tatiane Costa",
+      "email": "tatiane.costa@local.com",
+      "consents": {
+        "newsletter": false,
+        "ads": true,
+        "anonymous": false
+      }
+    },
+    {
+      "id": 26,
+      "name": "Roberto Alves",
+      "email": "roberto.alves@local.com",
+      "consents": {
+        "newsletter": true,
+        "ads": false,
+        "anonymous": false
+      }
+    },
+    {
+      "id": 27,
+      "name": "Carla Andrade",
+      "email": "carla.andrade@local.com",
+      "consents": {
+        "newsletter": false,
+        "ads": true,
+        "anonymous": true
+      }
+    },
+    {
+      "id": 28,
+      "name": "Jorge Mendes",
+      "email": "jorge.mendes@local.com",
+      "consents": {
+        "newsletter": true,
+        "ads": true,
+        "anonymous": false
+      }
+    },
+    {
+      "id": 29,
+      "name": "Débora Lima",
+      "email": "debora.lima@local.com",
+      "consents": {
+        "newsletter": false,
+        "ads": false,
+        "anonymous": true
+      }
+    },
+    {
+      "id": 30,
+      "name": "Renata Souza",
+      "email": "renata.souza@local.com",
+      "consents": {
+        "newsletter": true,
+        "ads": false,
+        "anonymous": false
+      }
+    }
+  ]
+}

@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 export class AlertService {
   constructor(private alertConfig: AlertConfig) {
     this.alertConfig.dismissible = false;
-    // this.alertConfig.dismissOnTimeout = 5000;
+    this.alertConfig.dismissOnTimeout = 5000;
   }
   private alertSubject = new BehaviorSubject<{
     text: string; type: 'success' | 'error'

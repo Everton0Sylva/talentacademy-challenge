@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { AlertComponent } from './components/alert';
+import { AlertComponent } from './components/alert/alert';
+
 
 @Component({
   selector: 'app-root',

@@ -12,5 +12,11 @@
         "anonymous": "Contribuir para estatísticas de visitas anônimas"
     },
     "consent-success": "Dados do consentimento salvos com sucesso!",
-    "consent-error": "Erro ao salvar os dados do consentimento!"
+    "consent-error": "Erro ao salvar os dados do consentimento!",
+    "collected": {
+        "id": "",
+        "name": "Nome",
+        "email": "Email",
+        "consents" : "Concedido para"
+    }
 }

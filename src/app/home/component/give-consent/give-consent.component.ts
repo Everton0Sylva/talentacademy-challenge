@@ -4,6 +4,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { AlertService } from '../../../services/alert.service';
 import { timer } from 'rxjs';
+import { HttprequestService } from '../../../services/httprequest.service';
 
 @Component({
   selector: 'app-give-consent',
@@ -22,7 +23,7 @@ export class GiveConsentComponent {
     'anonymous'
   ];
 
-  constructor(private translate: TranslateService) {
+  constructor() {
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -34,22 +35,28 @@ export class GiveConsentComponent {
     })
 
 
-    timer(2000).subscribe(() => {
+    /*timer(2000).subscribe(() => {
       this.alertService.success(this.translate.instant('consent-success'));
       this.alertService.error(this.translate.instant('consent-error'));
-    });
+    });*/
   }
 
 
+  private translate: TranslateService = inject(TranslateService);
   private alertService: AlertService = inject(AlertService);
+  private httprequestService: HttprequestService = inject(HttprequestService);
 
   submit() {
     if (this.form.valid) {
       const formData = this.form.value;
-
-      this.alertService.success(this.translate.instant('consent-success'));
-    } else {
-      alert(this.translate.instant('consent.invalid'));
+      this.httprequestService.post('/consents', formData).subscribe({
+        next: (response) => {
+          this.alertService.success(this.translate.instant('consent-success'));
+        },
+        error: (error) => {
+          this.alertService.error(this.translate.instant('consent-error'));
+        }
+      });
     }
   }
 
