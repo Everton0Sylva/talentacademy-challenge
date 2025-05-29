@@ -1,0 +1,22 @@
+.text-xsm {
+    font-size: xx-small;
+}
+
+
+.btn-theme {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 15px;
+    border-radius: 12px;
+    font-size: 18px;
+}
+
+.body-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
