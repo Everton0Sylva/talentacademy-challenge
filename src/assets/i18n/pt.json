@@ -1,0 +1,16 @@
+{
+    "name": "Nome",
+    "email-address": "Endereço de E-mail",
+    "i-agree-to": " Concordo com",
+    "consent": {
+        "collected": "Consentimentos Coletados",
+        "give": "Conceder Consentimento"
+    },
+    "consents": {
+        "newsletter": "Receber newsletters",
+        "ads": "Mostrar anúncios direcionados",
+        "anonymous": "Contribuir para estatísticas de visitas anônimas"
+    },
+    "consent-success": "Dados do consentimento salvos com sucesso!",
+    "consent-error": "Erro ao salvar os dados do consentimento!"
+}
