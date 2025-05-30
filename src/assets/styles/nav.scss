@@ -1,0 +1,33 @@
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
+@import "../../../node_modules/bootstrap/scss/mixins";
+
+
+
+.nav-pills .nav-link.active {
+    border-right: 7px solid;
+}
+
+[data-bs-theme="light"] {
+    .nav-pills .nav-link {
+        color: $gray-600;
+    }
+
+    .nav-pills .nav-link.active {
+        background-color: $gray-400;
+        color: $indigo-400;
+        border-right-color: $purple-200;
+    }
+}
+
+[data-bs-theme="dark"] {
+    .nav-pills .nav-link {
+        color: $gray-500;
+    }
+
+    .nav-pills .nav-link.active {
+        background-color: $gray-800;
+        color: $cyan-300;
+        border-right-color: $blue-700;
+    }
+}

@@ -1,27 +1,9 @@
 @use "assets/styles/table";
+@use "assets/styles/nav";
+
+
+
 
 .c-pointer {
   cursor: pointer;
-}
-
-[data-bs-theme="light"] {
-  .nav-pills .nav-link {
-    color: var(--bs-gray-900);
-  }
-
-  .nav-pills .nav-link.active {
-    background-color: var(--bs-gray-400);
-    color: #3d6653;
-  }
-}
-
-[data-bs-theme="dark"] {
-  .nav-pills .nav-link {
-    color: var(--bs-gray-100);
-  }
-
-  .nav-pills .nav-link.active {
-    background-color: var(--bs-gray-800);
-    color: #5fa586;
-  }
 }
