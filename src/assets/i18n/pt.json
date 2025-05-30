@@ -15,6 +15,9 @@
     "consent-success": "Dados do consentimento salvos com sucesso!",
     "consent-error": "Erro ao salvar os dados do consentimento!",
     "collected": {
+        "total": "Total :",
+        "itens": "Itens",
+        "search": "Pesquisar",
         "id": "",
         "name": "Nome",
         "email": "Email",

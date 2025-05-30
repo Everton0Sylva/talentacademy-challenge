@@ -6,11 +6,12 @@ import { HttprequestService } from '../../../services/httprequest.service';
 import { Consent } from '../../../model/consent';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SearchComponent } from '../../../components/search/search.component';
 
 @Component({
   selector: 'app-collected-consents',
   standalone: true,
-  imports: [CommonModule, PaginationModule, TranslateModule, CommonModule, FormsModule],
+  imports: [CommonModule, PaginationModule, TranslateModule, CommonModule, FormsModule, SearchComponent],
   templateUrl: './collected-consents.component.html',
   styleUrl: './collected-consents.component.scss'
 })
@@ -21,13 +22,15 @@ export class CollectedConsentsComponent implements OnInit {
   private httprequestService: HttprequestService = inject(HttprequestService);
 
 
+  public backupData: any = null;
   public paginatedData: any[] = [];
-  public consents: any[] = [];
+  public totalData: any[] = [];
   public columns: string[] = []
 
   public pagination = {
     currentPage: 1,
-    itemsPerPage: 10
+    itemsPerPage: 10,
+    totalItems: 0
   }
 
 
@@ -44,7 +47,7 @@ export class CollectedConsentsComponent implements OnInit {
   getList() {
     this.httprequestService.getConsents().subscribe({
       next: (resp) => {
-        this.consents = resp.map(data => {
+        this.totalData = resp.map(data => {
           let consents: any = Object.entries(data.consents)
             .filter(values => {
               return values[1];
@@ -57,6 +60,8 @@ export class CollectedConsentsComponent implements OnInit {
 
           return data;
         });
+        this.pagination.totalItems = this.totalData.length;
+
         this.updatePagination();
       },
       error: (error) => {
@@ -72,7 +77,7 @@ export class CollectedConsentsComponent implements OnInit {
 
   updatePagination() {
     const startIndex = (this.pagination.currentPage - 1) * this.pagination.itemsPerPage;
-    this.paginatedData = this.consents.slice(startIndex, startIndex + this.pagination.itemsPerPage);
+    this.paginatedData = this.totalData.slice(startIndex, startIndex + this.pagination.itemsPerPage);
   }
 
   sortData(column: string) {
@@ -80,10 +85,21 @@ export class CollectedConsentsComponent implements OnInit {
     this.updatePagination();
   }
 
+  onSearch(textSearch: string) {
+    if (this.backupData == null) {
+      this.backupData = [...this.totalData];
+    }
+    if (textSearch.length == 0) {
+      this.totalData = [...this.backupData];
 
-
-  showComma(consents: any) {
-
+      this.backupData = null;
+    } else {
+      let filtered = this.backupData.filter((data: any) => data.name.toLowerCase().includes(textSearch));
+      this.pagination.currentPage = 1;
+      this.totalData = filtered;
+    }
+    this.updatePagination();
+    this.pagination.totalItems = this.totalData.length;
   }
 
 

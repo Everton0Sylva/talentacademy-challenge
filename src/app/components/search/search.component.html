@@ -1,0 +1,11 @@
+<div class="d-flex flex-column">
+    <span class="fw-light mb-1">{{ 'collected.search' | translate }}</span>
+    <div class="input-group input-group-lg">
+        <input type="text" id="searchInput" class="form-control" aria-label="search" [(ngModel)]="text" placeholder="{{ 'collected.search' | translate }}"
+            (keyup)="onSearch()">
+        <button class="btn btn-outline-secondary" type="button" (click)="onClearSearch()"
+            *ngIf="text.length > 1">X</button>
+
+        <span class="input-group-text"><i class="bi bi-funnel-fill"></i></span>
+    </div>
+</div>

@@ -1,49 +1,62 @@
-<div class="table-responsive collected-table">
-    <table class="table">
-        <thead class="text-center">
-            <tr>
-                <th *ngFor="let column of columns">{{'collected.' + column | translate }}</th>
-            </tr>
-        </thead>
-        <tbody class="vertical-align-middle">
-            @for (consent of paginatedData; track consent.id) {
-            <tr>
-                <td>{{ consent.name }}</td>
-                <td>{{ consent.email }}</td>
-                <td>
-                    @for (item of consent.consents; track item; let idx = $index) {
-                    <div class="d-flex flex-column">
-                        <div class="d-flex flex-row">
-                            {{ 'consents.' + item | translate }}
-                            <strong *ngIf="idx < consent.consents.length -1" class="ms-1">,</strong>
-                        </div>
-                    </div>
+<div class="d-flex flex-column gap-5">
+    <div class="col-lg-8">
+        <app-search (searchEmit)="onSearch($event)"></app-search>
+    </div>
+    <div class="d-flex flex-column">
+        <div class="table-responsive collected-table">
+            <table class="table m-0">
+                <thead class="text-center">
+                    <tr>
+                        <th *ngFor="let column of columns">{{'collected.' + column | translate }}</th>
+                    </tr>
+                </thead>
+                <tbody class="vertical-align-middle">
+                    @for (consent of paginatedData; track consent.id) {
+                    <tr>
+                        <td>{{ consent.name }}</td>
+                        <td>{{ consent.email }}</td>
+                        <td>
+                            @for (item of consent.consents; track item; let idx = $index) {
+                            <div class="d-flex flex-column">
+                                <div class="d-flex flex-row">
+                                    {{ 'consents.' + item | translate }}
+                                    <strong *ngIf="idx < consent.consents.length -1" class="ms-1">,</strong>
+                                </div>
+                            </div>
+                            } @empty {
+                            <div class="d-flex flex-column align-items-center fw-light fst-italic">
+                                {{ 'consents.no-consent' | translate }}
+                            </div>
+                            }
+                        </td>
+                    </tr>
                     } @empty {
-                    <div class="d-flex flex-column align-items-center fw-light fst-italic">
-                        {{ 'consents.no-consent' | translate }}
-                    </div>
+                    <tr>
+                        <td colspan="4" style="text-align: center" class="fw-bold fst-italic">
+                            {{ 'collected.none-collected' | translate }}
+                        </td>
+                    </tr>
                     }
-                </td>
-            </tr>
-            } @empty {
-            <tr>
-                <td colspan="4" style="text-align: center" class="fw-bold fst-italic">
-                    {{ 'collected.none-collected' | translate }}
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>
-    <div class="d-flex flex-row justify-content-center">
-        <pagination [totalItems]="consents.length" [(ngModel)]="pagination.currentPage"
-            [customPreviousTemplate]="prevTemplate" [customNextTemplate]="nextTemplate"
-            [itemsPerPage]="pagination.itemsPerPage" (pageChanged)="onPageChange($event)"></pagination>
+                </tbody>
+            </table>
+        </div>
+        <div class="d-flex flex-row justify-content-center mt-3" *ngIf="pagination.totalItems > 0">
+            <pagination [totalItems]="pagination.totalItems" [(ngModel)]="pagination.currentPage"
+                [customPreviousTemplate]="prevTemplate" [customNextTemplate]="nextTemplate"
+                [itemsPerPage]="pagination.itemsPerPage" (pageChanged)="onPageChange($event)">
 
-        <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
-            <i class="bi bi-arrow-right-circle-fill"></i>
-        </ng-template>
-        <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
-            <i class="bi bi-arrow-left-circle-fill"></i>
-        </ng-template>
+            </pagination>
+
+            <span class="fs-6 mt-2 ms-3">{{ 'collected.total' | translate }} {{pagination.totalItems}} {{
+                'collected.itens' |
+                translate }}</span>
+
+            <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+                <i class="bi bi-arrow-right-circle-fill"></i>
+            </ng-template>
+            <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+                <i class="bi bi-arrow-left-circle-fill"></i>
+            </ng-template>
+        </div>
     </div>
 </div>
