@@ -1,0 +1,34 @@
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
+@import "../../../node_modules/bootstrap/scss/mixins";
+
+
+.collected-table {
+    border: 3px solid;
+    border-radius: 12px;
+}
+
+[data-bs-theme="dark"] {
+    table th {
+        background-color: $cyan-800;
+    }
+
+    .collected-table {
+        border-color: $indigo-100;
+    }
+}
+
+[data-bs-theme="light"] {
+    table th {
+        background-color: $cyan-100;
+    }
+
+    .collected-table {
+        border-color: $blue-200;
+    }
+}
+
+
+.table > tbody > tr > :nth-child(odd) {
+  background-color: var(--bs-table-striped-bg, #f8f9fa) !important;
+}

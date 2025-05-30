@@ -21,9 +21,9 @@ export class CollectedConsentsComponent implements OnInit {
   private httprequestService: HttprequestService = inject(HttprequestService);
 
 
-  public paginatedData: Consent[] = [];
-  public consents: Consent[] = [];
-  public columns!: string[]
+  public paginatedData: any[] = [];
+  public consents: any[] = [];
+  public columns: string[] = []
 
   public pagination = {
     currentPage: 1,
@@ -32,8 +32,11 @@ export class CollectedConsentsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.columns = Object.keys(new Consent());
-
+    for (let key of Object.keys(new Consent())) {
+      if (key != 'id') {
+        this.columns.push(key);
+      }
+    }
     this.getList();
   }
 
@@ -41,7 +44,19 @@ export class CollectedConsentsComponent implements OnInit {
   getList() {
     this.httprequestService.getConsents().subscribe({
       next: (resp) => {
-        this.consents = resp;
+        this.consents = resp.map(data => {
+          let consents: any = Object.entries(data.consents)
+            .filter(values => {
+              return values[1];
+            })
+            .map(values => {
+              return values[0];
+            });
+
+          data.consents = consents;
+
+          return data;
+        });
         this.updatePagination();
       },
       error: (error) => {
@@ -64,5 +79,12 @@ export class CollectedConsentsComponent implements OnInit {
     this.paginatedData.sort((a: any, b: any) => (a[column] > b[column] ? 1 : -1));
     this.updatePagination();
   }
+
+
+
+  showComma(consents: any) {
+
+  }
+
 
 }
