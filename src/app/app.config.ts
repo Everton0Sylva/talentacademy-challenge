@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter, withHashLocation } from '@angular/router';
 import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -6,6 +6,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { routes } from './app.routes';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) =>
   new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -22,6 +25,8 @@ export const appConfig: ApplicationConfig = {
         deps: [HttpClient],
       },
     }),
+    importProvidersFrom(NgxSpinnerModule.forRoot(), BsDropdownModule.forRoot()),
+    provideAnimations(),
 
     provideRouter(routes, withHashLocation())
   ]

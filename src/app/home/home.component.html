@@ -11,7 +11,9 @@
         </li>
     </ul>
 
-    <div class="tab-content w-100">
+    <div class="tab-content w-100 position-relative">
         <router-outlet></router-outlet>
+
+        <ngx-spinner size="large" [bdColor]="bdColor" color="#ffff" type="ball-clip-rotate-pulse" [fullScreen]="false"></ngx-spinner>
     </div>
 </div>

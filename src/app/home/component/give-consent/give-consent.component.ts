@@ -5,11 +5,12 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { AlertService } from '../../../services/alert.service';
 import { timer } from 'rxjs';
 import { HttprequestService } from '../../../services/httprequest.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-give-consent',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslatePipe,],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslatePipe],
   templateUrl: './give-consent.component.html',
   styleUrl: './give-consent.component.scss'
 })
@@ -23,7 +24,7 @@ export class GiveConsentComponent {
     'anonymous'
   ];
 
-  constructor() {
+  constructor(private spinner: NgxSpinnerService) {
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -35,10 +36,11 @@ export class GiveConsentComponent {
     })
 
 
-    /*timer(2000).subscribe(() => {
-      this.alertService.success(this.translate.instant('consent-success'));
-      this.alertService.error(this.translate.instant('consent-error'));
-    });*/
+    
+    this.spinner.show();
+    timer(2000).subscribe(() => {
+      this.spinner.hide();
+    });
   }
 
 

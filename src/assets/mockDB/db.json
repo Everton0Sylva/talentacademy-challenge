@@ -299,6 +299,16 @@
         "ads": false,
         "anonymous": false
       }
+    },
+    {
+      "name": "Teste de Novo Concent",
+      "email": "teste@local.com",
+      "consents": {
+        "newsletter": true,
+        "ads": false,
+        "anonymous": true
+      },
+      "id": 31
     }
   ]
 }

@@ -25,4 +25,8 @@ export class AlertService {
     const currentAlerts = this.alertSubject.value;
     this.alertSubject.next([...currentAlerts, { text, type: "error" }]);
   }
+
+  ngOnDestroy() {
+    this.alertSubject.complete();
+  }
 }

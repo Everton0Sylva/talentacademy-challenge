@@ -10,8 +10,28 @@
       </div>
       <router-outlet></router-outlet>
     </div>
-    <div class="bg-light btn-theme text-secondary c-pointer ms-3" (click)="onChangeTheme()">
-      <i class="bi" [ngClass]="getTheme() == 'light' ?  'bi-lightbulb' : 'bi-lightbulb-fill'"></i>
+    <div class="d-flex flex-column gap-3 ps-3">
+      <div class="bg-light btn-theme text-secondary c-pointer" (click)="onChangeTheme()">
+        <i class="bi" [ngClass]="theme == 'light' ?  'bi-lightbulb' : 'bi-lightbulb-fill'"></i>
+      </div>
+
+
+      <span dropdown container="body" class="c-pointer">
+        <span dropdownToggle>
+          <img class="btn-flag-img" [src]="currentFlag">
+        </span>
+        <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu" role="menu">
+          <li *ngFor="let language of languages">
+            <span class="dropdown-item c-pointer" (click)="onChangeLang(language)">
+              {{ language.lang | translate }}
+              <img [src]="language.flag" height="20" width="25" alt="{{ language.lang | translate }}" class="ms-2">
+            </span>
+          </li>
+        </ul>
+      </span>
+
+
+
     </div>
   </div>
 </div>

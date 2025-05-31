@@ -9,8 +9,7 @@ import { AlertService } from '../../services/alert.service';
     standalone: true,
     imports: [
         AlertModule,
-        CommonModule,
-        TranslatePipe
+        CommonModule
     ],
     template: `
         <div class="floartingalert">

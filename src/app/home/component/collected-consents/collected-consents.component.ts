@@ -7,6 +7,8 @@ import { Consent } from '../../../model/consent';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from '../../../components/search/search.component';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-collected-consents',
@@ -22,6 +24,9 @@ export class CollectedConsentsComponent implements OnInit {
   private httprequestService: HttprequestService = inject(HttprequestService);
 
 
+
+  private spinner: NgxSpinnerService = inject(NgxSpinnerService);
+
   public backupData: any = null;
   public paginatedData: any[] = [];
   public totalData: any[] = [];
@@ -35,11 +40,13 @@ export class CollectedConsentsComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.spinner.show();
     for (let key of Object.keys(new Consent())) {
       if (key != 'id') {
         this.columns.push(key);
       }
     }
+
     this.getList();
   }
 
@@ -63,9 +70,14 @@ export class CollectedConsentsComponent implements OnInit {
         this.pagination.totalItems = this.totalData.length;
 
         this.updatePagination();
+        timer(2000).subscribe(() => {
+          this.spinner.hide();
+        });
+
       },
       error: (error) => {
-
+        this.alertService.error(this.translate.instant('internal-error'));
+        this.spinner.hide();
       }
     })
   }

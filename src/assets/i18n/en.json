@@ -1,6 +1,29 @@
 {
-    "consents": {
-        "collected": "Olá, mundo!",
+    "name": "Name",
+    "email-address": "Email Address",
+    "i-agree-to": "I Agree to",
+    "consent": {
+        "collected": "Consents Collected",
         "give": "Give Consent"
-    }
+    },
+    "consents": {
+        "newsletter": "Receive newsletters",
+        "ads": "Be shown targeted ads",
+        "anonymous": "Contribute to anonymous browsing statistics",
+        "no-consent": "No consent given"
+    },
+    "consent-success": "Consent saved successfully!",
+    "consent-error": "Error saving consent!",
+    "internal-error": "Error querying, try again!",
+    "collected": {
+        "total": "Total :",
+        "itens": "Items",
+        "search": "Search",
+        "name": "Name",
+        "email": "Email",
+        "consents": "Consent given to",
+        "none-collected": "No consent found"
+    },
+    "pt": "Portuguese",
+    "en": "English"
 }
