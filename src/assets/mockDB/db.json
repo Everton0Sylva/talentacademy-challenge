@@ -309,6 +309,26 @@
         "anonymous": true
       },
       "id": 31
+    },
+    {
+      "name": "Carlos da Silva",
+      "email": "carlos@local.com",
+      "consents": {
+        "newsletter": false,
+        "ads": false,
+        "anonymous": false
+      },
+      "id": 32
+    },
+    {
+      "name": "Dante",
+      "email": "dante@local",
+      "consents": {
+        "newsletter": false,
+        "ads": false,
+        "anonymous": false
+      },
+      "id": 33
     }
   ]
 }

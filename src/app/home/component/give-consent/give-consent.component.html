@@ -2,13 +2,26 @@
     <form class="d-flex flex-column align-items-center gap-3" [formGroup]="form" (ngSubmit)="submit()">
         <div class="d-flex flex-row justify-content-center gap-5 col-12">
             <div class="col-lg-4 col-md-12 form-floating mb-3">
-                <input type="name" class="form-control" id="nameInput" placeholder="name" formControlName="name">
+                <input type="name" class="form-control" id="nameInput" placeholder="name" formControlName="name"
+                    (click)="showError()">
                 <label for="floatingInput">{{'name' | translate }}</label>
+                <div *ngIf="isSubmitted && form.controls['name'].invalid" class="text-danger fw-semibold">
+                    <small *ngIf="form.controls['name'].errors?.['required']">{{ 'validator.name.required' | translate
+                        }}</small>
+                    <small *ngIf="form.controls['name'].errors?.['minlength']">{{ 'validator.name.minimum' | translate
+                        }}</small>
+                </div>
             </div>
             <div class="col-lg-5 col-md-12 form-floating">
                 <input type="email" class="form-control" id="emailInput" placeholder="name@example.com"
-                    formControlName="email">
+                    formControlName="email" (click)="showError()">
                 <label for="floatingInput">{{'email-address' | translate }}</label>
+                <div *ngIf="isSubmitted && form.controls['email'].invalid" class="text-danger fw-semibold">
+                    <small *ngIf="form.controls['email'].errors?.['required']">{{ 'validator.email.required' | translate
+                        }}</small>
+                    <small *ngIf="form.controls['email'].errors?.['pattern']">{{ 'validator.email.invalid' | translate
+                        }}</small>
+                </div>
             </div>
         </div>
 

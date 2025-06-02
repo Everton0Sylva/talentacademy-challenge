@@ -5,6 +5,16 @@
     "consent": {
         "collected": "Consentimentos Coletados",
         "give": "Conceder Consentimento"
+    },    
+    "validator" : {
+        "name": {
+            "required": "O campo 'Nome' é obrigatório!",
+            "minimum": "O campo 'Nome' deve ter pelo menos 3 letras"
+        },
+        "email": {
+            "required": "O campo 'Email' é obrigatório!",
+            "invalid": "Insira um e-mail válido"
+        }
     },
     "consents": {
         "newsletter": "Receber newsletters",
@@ -25,7 +35,6 @@
         "consents": "Concedido para",
         "none-collected": "Nenhum consentimento encontrado"
     },
-
     "pt": "Português",
     "en": "Inglês"
 }

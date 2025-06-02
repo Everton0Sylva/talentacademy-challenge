@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, HostListener, inject } from '@angular/core';
+import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { AlertService } from '../../../services/alert.service';
 import { timer } from 'rxjs';
@@ -24,10 +24,16 @@ export class GiveConsentComponent {
     'anonymous'
   ];
 
+
+
+  private translate: TranslateService = inject(TranslateService);
+  private alertService: AlertService = inject(AlertService);
+  private httprequestService: HttprequestService = inject(HttprequestService);
+
   constructor(private spinner: NgxSpinnerService) {
     this.form = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email]),
+      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
       consents: new FormGroup({
         newsletter: new FormControl(false),
         ads: new FormControl(false),
@@ -35,31 +41,42 @@ export class GiveConsentComponent {
       })
     })
 
-
-    
-    this.spinner.show();
+   /* this.spinner.show();
     timer(2000).subscribe(() => {
       this.spinner.hide();
-    });
+    });*/
   }
 
+  public isSubmitted: boolean = false;
 
-  private translate: TranslateService = inject(TranslateService);
-  private alertService: AlertService = inject(AlertService);
-  private httprequestService: HttprequestService = inject(HttprequestService);
-
-  submit() {
-    if (this.form.valid) {
-      const formData = this.form.value;
-      this.httprequestService.post('/consents', formData).subscribe({
-        next: (response) => {
-          this.alertService.success(this.translate.instant('consent-success'));
-        },
-        error: (error) => {
-          this.alertService.error(this.translate.instant('consent-error'));
-        }
-      });
+  showError() {
+    if (this.isSubmitted && this.form.invalid) {
+      this.isSubmitted = false;
     }
   }
 
+  submit() {
+    this.isSubmitted = false;
+
+    if (this.form.invalid) {
+      this.isSubmitted = true;
+      return;
+    };
+    this.spinner.show();
+    const formData = this.form.value;
+    this.httprequestService.post('/consents', formData).subscribe({
+      next: (response) => {
+        timer(1000).subscribe(() => {
+          this.spinner.hide();
+          this.alertService.success(this.translate.instant('consent-success'));
+        });
+      },
+      error: (error) => {
+        timer(3000).subscribe(() => {
+          this.spinner.hide();
+          this.alertService.error(this.translate.instant('consent-error'));
+        });
+      }
+    });
+  }
 }

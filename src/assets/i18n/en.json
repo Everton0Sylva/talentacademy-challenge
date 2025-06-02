@@ -6,6 +6,16 @@
         "collected": "Consents Collected",
         "give": "Give Consent"
     },
+    "validator": {
+        "name": {
+            "required": "Field 'Name' is required!",
+            "minimum": "Field 'Name' need at least 3 letters."
+        },
+        "email": {
+            "required": "Field 'Email' is required!",
+            "invalid": "Is not a valid email!"
+        }
+    },
     "consents": {
         "newsletter": "Receive newsletters",
         "ads": "Be shown targeted ads",
