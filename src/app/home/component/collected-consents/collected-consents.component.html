@@ -7,7 +7,22 @@
             <table class="table m-0">
                 <thead class="text-center">
                     <tr>
-                        <th *ngFor="let column of columns">{{'collected.' + column | translate }}</th>
+                        <th *ngFor="let column of columns" (click)="column.sort == null ?null : sortData(column)">
+                            <div [ngClass]="column.sort !== null ? 'c-pointer' : ''">
+                                @if (currentSort == column.key){
+                                @switch (column.sort) {
+                                @case (true){
+                                <i class="bi bi-sort-alpha-down"></i>
+                                }
+                                @case (false){
+                                <i class="bi bi-sort-alpha-up-alt"></i>
+                                }
+                                }
+                                }
+                                {{'collected.' + column.key |
+                                translate }}
+                            </div>
+                        </th>
                     </tr>
                 </thead>
                 <tbody class="vertical-align-middle">

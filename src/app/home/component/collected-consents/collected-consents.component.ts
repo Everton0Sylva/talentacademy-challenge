@@ -17,6 +17,7 @@ import { timer } from 'rxjs';
   templateUrl: './collected-consents.component.html',
   styleUrl: './collected-consents.component.scss'
 })
+
 export class CollectedConsentsComponent implements OnInit {
 
   private translate: TranslateService = inject(TranslateService);
@@ -27,10 +28,15 @@ export class CollectedConsentsComponent implements OnInit {
 
   private spinner: NgxSpinnerService = inject(NgxSpinnerService);
 
+  public intlCollator = new Intl.Collator('pt-BR', { sensitivity: 'base' });
+
+
   public backupData: any = null;
   public paginatedData: any[] = [];
   public totalData: any[] = [];
-  public columns: string[] = []
+  public columns: Column[] = new Array<Column>();
+
+  public currentSort = '';
 
   public pagination = {
     currentPage: 1,
@@ -43,7 +49,12 @@ export class CollectedConsentsComponent implements OnInit {
     this.spinner.show();
     for (let key of Object.keys(new Consent())) {
       if (key != 'id') {
-        this.columns.push(key);
+        // this.columns.push( Column = {
+        let col: Column = {
+          key: key,
+          sort: key == 'consents' ? null : false,
+        };
+        this.columns.push(col);
       }
     }
 
@@ -92,8 +103,14 @@ export class CollectedConsentsComponent implements OnInit {
     this.paginatedData = this.totalData.slice(startIndex, startIndex + this.pagination.itemsPerPage);
   }
 
-  sortData(column: string) {
-    this.paginatedData.sort((a: any, b: any) => (a[column] > b[column] ? 1 : -1));
+  sortData(column: Column) {
+    column.sort = !column.sort;
+    this.totalData.sort((a: any, b: any) => {
+      return column.sort
+        ? this.intlCollator.compare(a[column.key], b[column.key])
+        : this.intlCollator.compare(b[column.key], a[column.key]);
+    })
+    this.currentSort = column.key;
     this.updatePagination();
   }
 
@@ -116,3 +133,8 @@ export class CollectedConsentsComponent implements OnInit {
 
 
 }
+
+export type Column = {
+  key: string;
+  sort: boolean | null;
+};
