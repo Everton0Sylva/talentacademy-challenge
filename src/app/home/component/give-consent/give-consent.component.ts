@@ -41,10 +41,10 @@ export class GiveConsentComponent {
       })
     })
 
-   /* this.spinner.show();
+    this.spinner.show();
     timer(2000).subscribe(() => {
       this.spinner.hide();
-    });*/
+    });
   }
 
   public isSubmitted: boolean = false;

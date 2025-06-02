@@ -55,7 +55,7 @@ export class ThemeService {
     this.languageSubject.next(this.language);
   }
 
-  public currentLanguage() {
+  public currentLanguage(): string {
     return this.language ?? localStorage.getItem('language');
 
   }

@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { TranslateDirective, TranslateModule, TranslatePipe } from '@ngx-translate/core';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ThemeService } from '../services/theme.service';
-import { Subscription } from 'rxjs';
+import { Subscription, timer } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -23,8 +23,10 @@ export class HomeComponent implements AfterViewInit {
   private themeService: ThemeService = inject(ThemeService);
 
   ngAfterViewInit() {
-    this.subs = this.themeService.getTheme().subscribe(theme => {
-      this.bdColor = theme == 'light' ? "rgba(0,0,0,0.2)" : "rgba(0,0,0,0.5)"
+    timer(100).subscribe(() => {
+      this.subs = this.themeService.getTheme().subscribe(theme => {
+        this.bdColor = theme == 'light' ? "rgba(0,0,0,0.2)" : "rgba(0,0,0,0.5)"
+      })
     })
   }
 

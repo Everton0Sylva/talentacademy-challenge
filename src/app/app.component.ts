@@ -6,7 +6,7 @@ import { AlertComponent } from './components/alert/alert';
 import { ThemeService } from './services/theme.service';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HttprequestService } from './services/httprequest.service';
-import { map, Subject } from 'rxjs';
+import { map, Subject, takeUntil, timer } from 'rxjs';
 
 
 @Component({
@@ -17,10 +17,10 @@ import { map, Subject } from 'rxjs';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  private destroy$ = new Subject<void>();
+  public destroy$ = new Subject<void>();
   theme!: string;
 
-  languages: any[] = [];
+  languages: { lang: string, flag: string }[] = [];
 
   constructor(private translate: TranslateService, private themeService: ThemeService, private httprequestService: HttprequestService,
     private cdRef: ChangeDetectorRef) {
@@ -28,9 +28,12 @@ export class AppComponent {
     this.translate.setDefaultLang('pt');
   }
   ngAfterViewInit() {
-    this.themeService.getTheme().subscribe(theme => {
-      this.theme = theme;
-    })
+    timer(100).pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        this.themeService.getTheme().pipe(takeUntil(this.destroy$)).subscribe(theme => {
+          this.theme = theme;
+        })
+      })
   }
 
   currentFlag!: string;
@@ -40,9 +43,12 @@ export class AppComponent {
 
     this.themeService.setLanguage(currentLang ?? 'pt');
 
-    this.themeService.getLanguage().subscribe(lang => {
-      this.translate.use(lang);
-    })
+    timer(100).pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        this.themeService.getLanguage().pipe(takeUntil(this.destroy$)).subscribe(lang => {
+          this.translate.use(lang);
+        })
+      })
 
     this.translate.onLangChange.subscribe(() => {
       this.cdRef.detectChanges();
@@ -52,7 +58,8 @@ export class AppComponent {
       { lang: 'pt', flag: "assets/images/br.png" },
       { lang: 'en', flag: "assets/images/us.png" }]
 
-    this.currentFlag = this.languages.find(lang => currentLang == lang.lang)?.flag
+    let flag = this.languages.find(lang => currentLang == lang.lang)?.flag
+    this.currentFlag = flag || this.languages[0].flag
     this.setFlagPosition(currentLang);
   }
 
