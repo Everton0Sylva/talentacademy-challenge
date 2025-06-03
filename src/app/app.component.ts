@@ -49,7 +49,7 @@ export class AppComponent {
           this.translate.use(lang);
         })
       })
-
+    // debugger
     this.translate.onLangChange.subscribe(() => {
       this.cdRef.detectChanges();
     });

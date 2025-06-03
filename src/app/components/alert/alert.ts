@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { AlertService } from '../../services/alert.service';
+import { timer } from 'rxjs';
 
 @Component({
     selector: 'app-alert',
@@ -43,6 +44,11 @@ export class AlertComponent {
                     type: alert?.type == 'success' ? 'success' : 'danger'
                 }
             })
+
+            timer(5000).subscribe(() => {
+                this.alerts = [];
+            });
+
         });
     }
 }

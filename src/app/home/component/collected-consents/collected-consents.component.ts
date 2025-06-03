@@ -52,7 +52,7 @@ export class CollectedConsentsComponent implements OnInit {
         // this.columns.push( Column = {
         let col: Column = {
           key: key,
-          sort: key == 'consents' ? null : false,
+          sort: key == 'consents' ? null : true,
         };
         this.columns.push(col);
       }
@@ -104,13 +104,23 @@ export class CollectedConsentsComponent implements OnInit {
   }
 
   sortData(column: Column) {
-    column.sort = !column.sort;
+
     this.totalData.sort((a: any, b: any) => {
       return column.sort
         ? this.intlCollator.compare(a[column.key], b[column.key])
         : this.intlCollator.compare(b[column.key], a[column.key]);
     })
-    this.currentSort = column.key;
+    if (this.currentSort != column.key) {
+      if (this.currentSort != '') {
+        this.columns.forEach(col => {
+          if (col.key == this.currentSort) {
+            col.sort = true;
+          }
+        })
+      }
+      this.currentSort = column.key;
+    }
+    column.sort = !column.sort;
     this.updatePagination();
   }
 

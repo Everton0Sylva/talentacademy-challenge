@@ -11,10 +11,10 @@
                             <div [ngClass]="column.sort !== null ? 'c-pointer' : ''">
                                 @if (currentSort == column.key){
                                 @switch (column.sort) {
-                                @case (true){
+                                @case (false){
                                 <i class="bi bi-sort-alpha-down"></i>
                                 }
-                                @case (false){
+                                @case (true){
                                 <i class="bi bi-sort-alpha-up-alt"></i>
                                 }
                                 }

@@ -4,7 +4,9 @@ import { RouterModule } from '@angular/router';
 import { TranslateDirective, TranslateModule, TranslatePipe } from '@ngx-translate/core';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ThemeService } from '../services/theme.service';
-import { Subscription, timer } from 'rxjs';
+import { catchError, of, Subscription, timer } from 'rxjs';
+import { HttprequestService } from '../services/httprequest.service';
+import { Consent } from '../model/consent';
 
 @Component({
   selector: 'app-home',
@@ -15,8 +17,6 @@ import { Subscription, timer } from 'rxjs';
 })
 export class HomeComponent implements AfterViewInit {
   private subs!: Subscription;
-
-
 
   public bdColor = "";
 
@@ -29,8 +29,6 @@ export class HomeComponent implements AfterViewInit {
       })
     })
   }
-
-
 
   ngOnDestroy() {
     this.subs.unsubscribe();
