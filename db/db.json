@@ -319,16 +319,6 @@
         "anonymous": false
       },
       "id": 32
-    },
-    {
-      "name": "Dante",
-      "email": "dante@local",
-      "consents": {
-        "newsletter": false,
-        "ads": false,
-        "anonymous": false
-      },
-      "id": 33
     }
   ]
 }

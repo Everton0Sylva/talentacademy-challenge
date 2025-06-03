@@ -1,11 +1,11 @@
 import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter, withHashLocation } from '@angular/router';
+import { PreloadAllModules, provideRouter, withEnabledBlockingInitialNavigation, withHashLocation, withPreloading } from '@angular/router';
 import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
 import { routes } from './app.routes';
-import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { provideAnimations } from '@angular/platform-browser/animations';
@@ -28,6 +28,7 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(NgxSpinnerModule.forRoot(), BsDropdownModule.forRoot()),
     provideAnimations(),
 
-    provideRouter(routes, withHashLocation())
+    provideRouter(routes,
+      withHashLocation())
   ]
 };

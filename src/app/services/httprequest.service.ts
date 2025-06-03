@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable } from 'rxjs';
+import { catchError, debounceTime, delay, map, Observable, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Consent } from '../model/consent';
 
 
@@ -16,27 +16,15 @@ export class HttprequestService {
   constructor(private http: HttpClient) { }
 
   post(uri: string, body: any): Observable<any> {
-    return this.http.post(this.url + uri, body)
-      .pipe(
-        catchError(error => {
-          throw Error(error);
-        })
-      );
+    return this.http.post(this.url + uri, body).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => new Error(error.message || "Server error"))
+      }))
   }
 
   get(uri: string): Observable<any> {
-    return this.http.get(this.url + uri)
-      .pipe(
-        catchError(error => {
-          throw Error(error);
-        })
-      );
+    return this.http.get(this.url + uri);
   }
-
-
-
-
-
 
   getConsents(): Observable<[Consent]> {
     return this.get('/consents')
@@ -49,6 +37,6 @@ export class HttprequestService {
       )
   }
   postConsent(consent: Consent): Observable<any> {
-    return this.post('/consents', consent);
+    return this.post('/consents', consent)
   }
 }
