@@ -26,7 +26,7 @@ Então inicie o server:
 npm run start:angular
 ```
 
-Caso possua o Concurrently(https://github.com/open-cli-tools/concurrently#readme) pode executar os dois servers rodando o comando
+Caso possua o [Concurrently](https://github.com/open-cli-tools/concurrently#readme) pode executar os dois servers rodando o comando
 
 ```bash
 npm run start:all
